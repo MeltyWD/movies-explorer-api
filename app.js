@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
-// cors
+const cors = require('cors');
 const { errors } = require('celebrate');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
@@ -11,6 +11,19 @@ const NotFoundError = require('./errors/not-found-error');
 
 const { PORT = 3001 } = process.env;
 const app = express();
+
+const allowlist = [
+  'https://api.meltywd.students.nomoredomains.icu',
+  'http://api.meltywd.students.nomoredomains.icu',
+  'https://meltywd.students.nomoredomains.icu',
+  'http://meltywd.students.nomoredomains.icu',
+  'http://localhost:3000'];
+
+app.use(cors({
+  origin: allowlist,
+  credentials: true,
+}));
+
 app.use(helmet());
 app.use(cookieParser());
 app.use(bodyParser.json());
