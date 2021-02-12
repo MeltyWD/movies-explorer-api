@@ -59,14 +59,11 @@ const movieSchema = new mongoose.Schema({
     },
     message: (props) => `${props.value} не действительный URL`,
   },
-  owner: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'user',
-      default: [],
-      select: false,
-    },
-  ],
+  owner: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+    select: false,
+  },
   nameRU: {
     type: String,
     required: true,

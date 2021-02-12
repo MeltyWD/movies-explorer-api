@@ -4,7 +4,7 @@
 
 ## Описание:
 
-REST API для [Дипломной работы](https://github.com/MeltyWD/movies-explorer-frontend), связанное с базой данных MongoDB. При запуске приложения оно подключается к серверу mongo по адресу: `mongodb://localhost:27017/diploma`.
+REST API для [Дипломной работы](https://github.com/MeltyWD/movies-explorer-frontend), связанное с базой данных MongoDB. При запуске приложения оно подключается к серверу mongo по адресу: `mongodb://localhost:27017/diplomafilmsbd`.
 
 Страница дипломной работы - [https://api.meltyb.students.nomoredomains.icu/api/](https://api.meltyb.students.nomoredomains.icu/api/) 
 Публичный IP адресс - 130.193.40.106
