@@ -24,6 +24,7 @@ module.exports.createFilm = async (req, res, next) => {
       nameRU,
       nameEN,
       thumbnail,
+      movieId,
     } = req.body;
     const movieElem = await Movie.create({
       country,
@@ -36,6 +37,7 @@ module.exports.createFilm = async (req, res, next) => {
       nameRU,
       nameEN,
       thumbnail,
+      movieId,
     });
     res.send(movieElem);
   } catch (err) {
