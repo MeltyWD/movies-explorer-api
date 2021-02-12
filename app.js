@@ -30,7 +30,7 @@ mongoose.connect(mongodbUrl, mongodbSetting);
 
 app.use(requestLogger); // подключаем логгер запросов
 
-app.use('/', require('./routes/index'));
+app.use('/api/', require('./routes/index'));
 
 app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
