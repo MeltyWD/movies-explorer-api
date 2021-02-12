@@ -53,7 +53,7 @@ module.exports.deleteFilm = async (req, res, next) => {
   try {
     const { movieId } = req.params;
     const deleteElem = await Movie.findByIdAndDelete(movieId)
-      .orFail(new NotFoundError('Карточка не найдена'));
+      .orFail(new NotFoundError('Фильм не найден'));
     res.send(deleteElem);
   } catch (err) {
     next(err);
