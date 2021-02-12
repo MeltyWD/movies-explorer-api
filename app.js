@@ -5,19 +5,16 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 const { errors } = require('celebrate');
-const auth = require('./middlewares/auth');
+const rateLimit = require('express-rate-limit');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const NotFoundError = require('./errors/not-found-error');
+const {
+  allowlist, mongodbUrl, mongodbSetting, limiterSetting,
+} = require('./utils/constants');
 
 const { PORT = 3001 } = process.env;
 const app = express();
 
-const allowlist = [
-  'https://api.meltywd.students.nomoredomains.icu',
-  'http://api.meltywd.students.nomoredomains.icu',
-  'https://meltywd.students.nomoredomains.icu',
-  'http://meltywd.students.nomoredomains.icu',
-  'http://localhost:3000'];
+app.use(rateLimit(limiterSetting));
 
 app.use(cors({
   origin: allowlist,
@@ -29,36 +26,17 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect('mongodb://localhost:27017/diploma', {
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-});
+mongoose.connect(mongodbUrl, mongodbSetting);
 
 app.use(requestLogger); // подключаем логгер запросов
 
-app.use('/signin', require('./routes/signin'));
-app.use('/signup', require('./routes/signup'));
-
-app.use(auth);
-
-app.use('/users', require('./routes/users'));
-app.use('/movies', require('./routes/movies'));
-
-app.use(() => {
-  throw new NotFoundError('Запрашиваемый ресурс не найден');
-});
+app.use('/', require('./routes/index'));
 
 app.use(errorLogger); // подключаем логгер ошибок
-
 app.use(errors());
-
 app.use((err, req, res, next) => {
-  // если у ошибки нет статуса, выставляем 500
   const { statusCode = 500, message } = err;
-
-  res
-    .status(statusCode)
+  res.status(statusCode)
     .send({
       // проверяем статус и выставляем сообщение в зависимости от него
       message: statusCode === 500

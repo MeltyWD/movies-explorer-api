@@ -1,60 +1,59 @@
 const Movie = require('../models/movie');
 const NotFoundError = require('../errors/not-found-error');
-const ForbiddenError = require('../errors/forbidden-error');
 const BadRequest = require('../errors/bad-request-error');
 
-module.exports.getFilms = (req, res, next) => {
-  Movie.find({})
-    .then((users) => res.send(users))
-    .catch(next);
+module.exports.getFilms = async (req, res, next) => {
+  try {
+    const movies = await Movie.find({});
+    res.send(movies);
+  } catch (err) {
+    next(err);
+  }
 };
 
-module.exports.createFilm = (req, res, next) => {
-  const {
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-  } = req.body;
-
-  Movie.create({
-    country,
-    director,
-    duration,
-    year,
-    description,
-    image,
-    trailer,
-    nameRU,
-    nameEN,
-    thumbnail,
-  })
-    .then((movie) => {
-      res.send(movie);
-    })
-    .catch((err) => {
-      if (err.name === 'ValidationError') {
-        const badRequestError = new BadRequest('Переданы некорректные данные');
-        next(badRequestError);
-      }
-      next(err);
+module.exports.createFilm = async (req, res, next) => {
+  try {
+    const {
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailer,
+      nameRU,
+      nameEN,
+      thumbnail,
+    } = req.body;
+    const movieElem = await Movie.create({
+      country,
+      director,
+      duration,
+      year,
+      description,
+      image,
+      trailer,
+      nameRU,
+      nameEN,
+      thumbnail,
     });
+    res.send(movieElem);
+  } catch (err) {
+    if (err.name === 'ValidationError') {
+      const badRequestError = new BadRequest('Переданы некорректные данные');
+      next(badRequestError);
+    }
+    next(err);
+  }
 };
 
-module.exports.deleteFilm = (req, res, next) => {
-  const { movieId } = req.params;
-  Movie.findById(movieId)
-    .orFail(new NotFoundError('Карточка не найдена'))
-    .then(() => {
-      Movie.findByIdAndDelete(movieId)
-        .populate(['owner', 'likes'])
-        .then((data) => res.send(data));
-    })
-    .catch(next);
+module.exports.deleteFilm = async (req, res, next) => {
+  try {
+    const { movieId } = req.params;
+    const deleteElem = await Movie.findByIdAndDelete(movieId)
+      .orFail(new NotFoundError('Карточка не найдена'));
+    res.send(deleteElem);
+  } catch (err) {
+    next(err);
+  }
 };

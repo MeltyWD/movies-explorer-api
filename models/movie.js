@@ -5,7 +5,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 56,
+    maxlength: 57,
   },
   director: {
     type: String,
@@ -21,7 +21,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 2,
-    maxlength: 20,
+    maxlength: 100,
   },
   description: {
     type: String,
