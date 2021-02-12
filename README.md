@@ -1,10 +1,10 @@
-# Бекэнд REST API для ["дипломной работы"](https://github.com/MeltyWD/movies-explorer-frontend)
+# Бекэнд REST API для [Дипломной работы](https://github.com/MeltyWD/movies-explorer-frontend)
 
 ## Создана в рамках учебы в [Яндекс.Практикум](https://praktikum.yandex.ru/) на курсе ["Веб-разработчик"](https://praktikum.yandex.ru/web/).
 
 ## Описание:
 
-REST API для ["дипломной работы"](https://github.com/MeltyWD/movies-explorer-frontend), связанное с базой данных MongoDB. При запуске приложения оно подключается к серверу mongo по адресу: `mongodb://localhost:27017/mestodb`.
+REST API для [Дипломной работы](https://github.com/MeltyWD/movies-explorer-frontend), связанное с базой данных MongoDB. При запуске приложения оно подключается к серверу mongo по адресу: `mongodb://localhost:27017/mestodb`.
 
 Страница дипломной работы - [https://api.meltyb.students.nomoredomains.icu/api/](https://api.meltyb.students.nomoredomains.icu/api/) 
 Публичный IP адресс - 130.193.40.106
@@ -57,6 +57,6 @@ REST API для ["дипломной работы"](https://github.com/MeltyWD/m
 
 * MongoDB (сопоставитель Mongoose)
 
-## Чеклисты дипломной работы:
+## Чеклист дипломной работы:
 
 * [Чеклист](https://code.s3.yandex.net/web-developer/static/new-program/web-diploma-criteria-2.0/index.html) 
