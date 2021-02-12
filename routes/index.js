@@ -1,11 +1,10 @@
 const router = require('express').Router();
-const auth = require('../middlewares/auth');
 const NotFoundError = require('../errors/not-found-error');
 
 router.use('/signin', require('./signin'));
 router.use('/signup', require('./signup'));
 
-router.use(auth);
+router.use(require('../middlewares/auth'));
 
 router.use('/users', require('./users'));
 router.use('/movies', require('./movies'));

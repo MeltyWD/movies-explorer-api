@@ -11,7 +11,7 @@ const {
   allowlist, mongodbUrl, mongodbSetting, limiterSetting,
 } = require('./utils/constants');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(rateLimit(limiterSetting));
@@ -34,16 +34,6 @@ app.use('/', require('./routes/index'));
 
 app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
-app.use((err, req, res, next) => {
-  const { statusCode = 500, message } = err;
-  res.status(statusCode)
-    .send({
-      // проверяем статус и выставляем сообщение в зависимости от него
-      message: statusCode === 500
-        ? 'На сервере произошла ошибка'
-        : message,
-    });
-  next();
-});
+app.use(require('./utils/error-handler'));
 
 app.listen(PORT, () => {});

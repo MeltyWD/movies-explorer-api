@@ -4,10 +4,9 @@
 
 ## Описание:
 
-REST API для проектной работы ["Mesto"](https://github.com/MelnikovAleksei/mesto-react), связанное с базой данных MongoDB. При запуске приложения оно подключается к серверу mongo по адресу: `mongodb://localhost:27017/mestodb`.
-В приложении описана схема пользователя и схема карточки.
+REST API для ["дипломной работы"](https://github.com/MeltyWD/movies-explorer-frontend), связанное с базой данных MongoDB. При запуске приложения оно подключается к серверу mongo по адресу: `mongodb://localhost:27017/mestodb`.
 
-[Страница дипломной работы](http://meltywd.students.nomoredomains.icu/) 
+Страница дипломной работы - [https://api.meltyb.students.nomoredomains.icu/api/](https://api.meltyb.students.nomoredomains.icu/api/) 
 Публичный IP адресс - 130.193.40.106
 
 ## Функционал:
@@ -19,10 +18,8 @@ REST API для проектной работы ["Mesto"](https://github.com/Mel
 
 ### Роуты для пользователей: 
 
-* GET /users - возвращает всех пользователей;
 * GET /users/me - возвращает данные авторизированного пользоователя; 
 * PATCH /users/me - редактирует свои данные;
-* GET /users/:userId - возвращает пользователя по переданному _id; 
 
 ### Роуты для карточек:
 
@@ -35,7 +32,6 @@ REST API для проектной работы ["Mesto"](https://github.com/Mel
 * expressjs
 * API REST 
 * MongoDB 
-* RegExp 
 
 ## Инструкция по установке:
 

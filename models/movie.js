@@ -79,6 +79,11 @@ const movieSchema = new mongoose.Schema({
     minlength: 1,
     maxlength: 300,
   },
+  movieId: {
+    type: String,
+    required: true,
+    unique: true,
+  },
 });
 
 module.exports = mongoose.model('movie', movieSchema);
