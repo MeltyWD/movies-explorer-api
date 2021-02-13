@@ -20,5 +20,8 @@ const limiterSetting = {
 };
 
 module.exports = {
-  allowlist, mongodbUrl, mongodbSetting, limiterSetting,
+  allowlist,
+  mongodbUrl,
+  mongodbSetting,
+  limiterSetting,
 };

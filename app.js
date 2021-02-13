@@ -10,6 +10,8 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const {
   allowlist, mongodbUrl, mongodbSetting, limiterSetting,
 } = require('./utils/constants');
+const mainRoute = require('./routes/index');
+const errorHandler = require('./utils/error-handler');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -30,10 +32,10 @@ mongoose.connect(mongodbUrl, mongodbSetting);
 
 app.use(requestLogger); // подключаем логгер запросов
 
-app.use('/api/', require('./routes/index'));
+app.use('/api/', mainRoute);
 
 app.use(errorLogger); // подключаем логгер ошибок
 app.use(errors());
-app.use(require('./utils/error-handler'));
+app.use(errorHandler);
 
 app.listen(PORT, () => {});

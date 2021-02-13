@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const ConflictError = require('../errors/conflict-error');
+const { userCreateConflictMessage } = require('../utils/messages');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -28,7 +29,7 @@ module.exports.createUser = async (req, res, next) => {
       .send(sendUser);
   } catch (err) {
     if (err.code === 11000) {
-      const conflictError = new ConflictError('Пользователь с таким email уже зарегистрирован');
+      const conflictError = new ConflictError(userCreateConflictMessage);
       next(conflictError);
     } else {
       next(err);
