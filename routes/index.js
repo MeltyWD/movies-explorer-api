@@ -8,7 +8,7 @@ router.use('/signup', require('./signup'));
 
 router.use(auth);
 
-router.use('/signout', logout);
+router.get('/signout', logout);
 router.use('/users', require('./users'));
 router.use('/movies', require('./movies'));
 
