@@ -1,8 +1,6 @@
 const allowlist = [
-  'https://api.meltywd.students.nomoredomains.icu',
-  'http://api.meltywd.students.nomoredomains.icu',
-  'https://meltywd.students.nomoredomains.icu',
-  'http://meltywd.students.nomoredomains.icu',
+  'https://meltyb.students.nomoredomains.icu',
+  'http://meltyb.students.nomoredomains.icu',
   'http://localhost:3000',
 ];
 
