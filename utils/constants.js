@@ -4,7 +4,7 @@ const allowlist = [
   'http://localhost:3000',
 ];
 
-const mongodbUrl = 'mongodb://localhost:27017/diplomafilmsbd';
+const mongodbUrl = 'mongodb://localhost:27017/filmsbd_diploma';
 
 const mongodbSetting = {
   useNewUrlParser: true,
