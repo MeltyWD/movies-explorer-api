@@ -16,7 +16,7 @@ module.exports.createUser = async (req, res, next) => {
     });
     const sendUser = await User.findById(createUser._id);
     const token = jwt.sign(
-      { _id: sendUser._id },
+      { _id: createUser._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
       { expiresIn: '7d' },
     );

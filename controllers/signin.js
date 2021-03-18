@@ -6,13 +6,13 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 module.exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    const correntUser = await User.findUserByCredentials(email, password);
+    const currentUser = await User.findUserByCredentials(email, password);
     const token = jwt.sign(
-      { _id: correntUser._id },
+      { _id: currentUser._id },
       NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
       { expiresIn: '7d' },
     );
-    const sendUser = await User.findById(correntUser._id);
+    const sendUser = await User.findById(currentUser._id);
     res
       .status(200)
       .cookie('jwt', token, {

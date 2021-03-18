@@ -1,6 +1,7 @@
 const User = require('../models/user');
 const NotFoundError = require('../errors/not-found-error');
-const { userNotFoundMessage } = require('../utils/messages');
+const { userCreateConflictMessage, userNotFoundMessage } = require('../utils/messages');
+const ConflictError = require('../errors/conflict-error');
 
 module.exports.getUserProfile = async (req, res, next) => {
   try {
@@ -25,6 +26,11 @@ module.exports.updateProfile = async (req, res, next) => {
     ).orFail(new NotFoundError(userNotFoundMessage));
     res.send(findUser);
   } catch (err) {
-    next(err);
+    if (err.code === 11000) {
+      const conflictError = new ConflictError(userCreateConflictMessage);
+      next(conflictError);
+    } else {
+      next(err);
+    }
   }
 };

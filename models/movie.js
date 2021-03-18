@@ -5,13 +5,13 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 57,
+    maxlength: 3000,
   },
   director: {
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 300,
+    maxlength: 3000,
   },
   duration: {
     type: Number,
@@ -27,7 +27,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 3000,
+    maxlength: 30000,
   },
   image: {
     type: String,
@@ -59,22 +59,22 @@ const movieSchema = new mongoose.Schema({
     },
     message: (props) => `${props.value} не действительный URL`,
   },
-  owner: {
+  owner: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
     select: false,
-  },
+  }],
   nameRU: {
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 300,
+    maxlength: 3000,
   },
   nameEN: {
     type: String,
     required: true,
     minlength: 1,
-    maxlength: 300,
+    maxlength: 3000,
   },
   movieId: {
     type: String,
